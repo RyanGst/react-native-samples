@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "rnsamples",
+    "slug": "rnsamples",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
