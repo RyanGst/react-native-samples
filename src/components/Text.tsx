@@ -25,6 +25,10 @@ export interface TextProps extends RNTextProps {
    */
   preset?: Presets;
   /**
+   * Simple text color modifier.
+   */
+  color?: keyof typeof colors;
+  /**
    * Text weight modifier.
    */
   font?: Fonts;
@@ -45,7 +49,7 @@ export interface TextProps extends RNTextProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Text.md)
  */
 export function Text(props: TextProps) {
-  const { font, size, text, children, style: $styleOverride, ...rest } = props;
+  const { font, size, text, color, children, style: $styleOverride, ...rest } = props;
 
   const content = text || children;
 
@@ -57,7 +61,9 @@ export function Text(props: TextProps) {
     {
       fontFamily: typography[font || "body"],
     } as TextStyle,
+    color && { color: colors[color] },
     $styleOverride,
+
   ];
 
   return (

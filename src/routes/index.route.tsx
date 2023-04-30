@@ -6,7 +6,13 @@ const { Navigator, Screen } = createNativeStackNavigator();
 const Routes = () => {
   return (
     <Navigator>
-      <Screen name="AccordionsWithRef" component={AccordionsWithRef} />
+      <Screen
+        name="AccordionsWithRef"
+        options={{
+          headerShown: false,
+        }}
+        component={AccordionsWithRef}
+      />
     </Navigator>
   );
 };

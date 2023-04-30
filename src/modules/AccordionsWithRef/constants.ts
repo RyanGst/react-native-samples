@@ -90,3 +90,8 @@ const data = [
     ],
   },
 ];
+
+type IWallet = typeof data[0];
+
+export default data;
+export type { IWallet };
