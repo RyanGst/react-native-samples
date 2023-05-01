@@ -6,6 +6,7 @@ import { customFontsToLoad } from "./theme";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Routes from "./routes/index.route";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [areFontsLoaded] = useFonts(customFontsToLoad);
@@ -13,19 +14,12 @@ export default function App() {
   if (!areFontsLoaded) return <Text> Loading... </Text>;
 
   return (
-    <NavigationContainer>
-      <SafeAreaProvider>
-        <Routes />
-      </SafeAreaProvider>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <SafeAreaProvider>
+          <Routes />
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
