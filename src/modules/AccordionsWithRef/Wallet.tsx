@@ -34,8 +34,8 @@ const Wallet = forwardRef<WalletRef, WalletProps>((props, ref) => {
   const height = useSharedValue(0);
 
   const style = useAnimatedStyle(() => ({
-    height: height.value * progress.value + 1,
-    opacity: progress.value === 0 ? 0 : withTiming(1_000),
+    height: height.value * progress.value + 2,
+    opacity: progress.value === 0 ? 0 : withTiming(1),
   }));
 
   let $headerContainer: ViewStyle = {
@@ -112,38 +112,43 @@ type AssetProps = IWallet["assets"][0] & {
 };
 
 function Asset({ name, amount, value, isLast }: AssetProps) {
+  const $assetStyle: ViewStyle = {
+    minHeight: 64,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 16,
+    backgroundColor: "#3b3558",
+    padding: 16,
+    borderBottomLeftRadius: isLast ? 8 : 0,
+    borderBottomRightRadius: isLast ? 8 : 0,
+  };
   return (
     <View
       style={{
-        height: 68,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        gap: 16,
-        backgroundColor: "#3b3558",
-        padding: 16,
-        borderBottomLeftRadius: isLast ? 8 : 0,
-        borderBottomRightRadius: isLast ? 8 : 0,
+        minHeight: 68,
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flex: 1,
-        }}
-      >
-        <Text color={"white"} font={"heading"}>
-          {name}
-        </Text>
-        <Text color={"white"}>USD {value.toFixed(2)}</Text>
+      <View style={$assetStyle}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flex: 1,
+          }}
+        >
+          <Text color={"white"} font={"heading"}>
+            {name}
+          </Text>
+          <Text color={"white"}>USD {value.toFixed(2)}</Text>
+        </View>
+        <MaterialCommunityIcons
+          name="elevation-rise"
+          size={24}
+          color={colors.white}
+        />
       </View>
-      <MaterialCommunityIcons
-        name="elevation-rise"
-        size={24}
-        color={colors.white}
-      />
     </View>
   );
 }
